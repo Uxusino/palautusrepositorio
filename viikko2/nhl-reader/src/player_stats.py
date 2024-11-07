@@ -1,4 +1,4 @@
-import requests
+from player_reader import PlayerReader
 from player import Player
 from enum import Enum
 
@@ -7,19 +7,20 @@ class SortBy(Enum):
     GOALS = 2
     ASSISTS = 3
 
-class PlayerService:
-    def __init__(self, url: str):
-        self._response = requests.get(url).json()
+class PlayerStats:
+    def __init__(self, reader: PlayerReader):
+        self._reader = reader
 
-    def players_by_nationality(self, nat):
+    def top_scorers_by_nationality(self, nat: str):
         players = []
 
-        for player_dict in self._response:
-            player = Player(player_dict)
+        for player in self._reader.players:
             if player.nationality == nat:
                 players.append(player)
 
-        return players
+        sorted_players = self.sort_players(players, SortBy.POINTS)
+
+        return sorted_players
     
     def sort_players(self, players: list, sortby: SortBy):
         def sort(player: Player):

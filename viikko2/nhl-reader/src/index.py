@@ -1,15 +1,16 @@
-from player import Player
-from playerservice import PlayerService, SortBy
+from player_reader import PlayerReader
+from player_stats import PlayerStats
 
 def main():
     url = "https://studies.cs.helsinki.fi/nhlstats/2023-24/players"
-    service = PlayerService(url=url)
+    service = PlayerReader(url=url)
+    stats = PlayerStats(service)
 
-    print("Oliot:")
-    players = service.players_by_nationality("FIN")
-    sorted_players = service.sort_players(players, SortBy.POINTS)
+    nationality = "FIN"
+    print(f"Players from {nationality}:")
+    players = stats.top_scorers_by_nationality(nationality)
 
-    for player in sorted_players:
+    for player in players:
         print(player)
 
 
