@@ -5,3 +5,4 @@ __pycache__
 htmlcov
 
 *.tmp
+*.code-workspace
