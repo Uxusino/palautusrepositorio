@@ -1,4 +1,6 @@
 # palautusrepositorio
 Palautusrepositorio OHTU-tehtäviä varten.
 
-Linkki ![ohtuvarastoon](https://github.com/Uxusino/ohtuvarasto)
+# Linkit
++ ![Ohtuvarasto](https://github.com/Uxusino/ohtuvarasto)
++ ![Webcounter](https://github.com/Uxusino/webcounter)
