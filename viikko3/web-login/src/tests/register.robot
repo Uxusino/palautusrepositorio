@@ -48,6 +48,30 @@ Register With Username That Is Already In Use
     Submit Credentials
     Register Should Fail With Message    Username already in use
 
+Login After Successful Registration
+    Set Username    pekka
+    Set Password    pekka123
+    Set Password Confirmation    pekka123
+    Submit Credentials
+    Go To Login Page
+    Login Page Should Be Open
+    Set Username    pekka
+    Set Password    pekka123
+    Click Button    Login
+    Login Should Succeed
+
+Login After Failed Registration
+    Set Username    a
+    Set Password    aaaa1111
+    Set Password Confirmation    aaaa1111
+    Submit Credentials
+    Go To Login Page
+    Login Page Should Be Open
+    Set Username    a
+    Set Password    aaaa1111
+    Click Button    Login
+    Login Should Fail With Message    Invalid username or password
+
 *** Keywords ***
 Reset Application Create User And Go To Register Page
     Reset Application
@@ -72,4 +96,12 @@ Submit Credentials
 Register Should Fail With Message
     [Arguments]  ${message}
     Register Page Should Be Open
+    Page Should Contain  ${message}
+
+Login Should Succeed
+    Main Page Should Be Open
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
     Page Should Contain  ${message}
