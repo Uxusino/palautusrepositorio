@@ -12,7 +12,6 @@ class TestKauppa(unittest.TestCase):
 
         varasto_mock = Mock()
 
-        # tehdään toteutus saldo-metodille
         def varasto_saldo(tuote_id):
             if tuote_id == 1:
                 return 10
