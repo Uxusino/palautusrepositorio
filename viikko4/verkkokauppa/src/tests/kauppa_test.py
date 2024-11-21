@@ -10,9 +10,6 @@ class TestKauppa(unittest.TestCase):
         self.pankki_mock = Mock()
         viitegeneraattori_mock = Mock(wraps=Viitegeneraattori())
 
-        # palautetaan aina arvo 42
-        # viitegeneraattori_mock.uusi.return_value = 42
-
         varasto_mock = Mock()
 
         # tehdään toteutus saldo-metodille
