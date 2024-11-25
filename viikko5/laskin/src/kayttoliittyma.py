@@ -41,11 +41,11 @@ class Kumous(Operaatio):
         super().__init__(sovelluslogiikka, syote)
     
     def suorita(self):
-        pass
+        self._sovelluslogiikka.kumoa()
 
 
 class Kayttoliittyma:
-    def __init__(self, sovelluslogiikka, root):
+    def __init__(self, sovelluslogiikka: Sovelluslogiikka, root):
         self._sovelluslogiikka = sovelluslogiikka
         self._root = root
 
@@ -107,7 +107,10 @@ class Kayttoliittyma:
 
         self._komennot[komento].suorita()
 
-        self._kumoa_painike["state"] = constants.NORMAL
+        if self._sovelluslogiikka.tyhja_historia():
+            self._kumoa_painike["state"] = constants.DISABLED
+        else:
+            self._kumoa_painike["state"] = constants.NORMAL
 
         if self._sovelluslogiikka.arvo() == 0:
             self._nollaus_painike["state"] = constants.DISABLED
