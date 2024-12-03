@@ -9,19 +9,30 @@ class And:
 
         return True
     
-class All:
-    def __init__(self):
-        pass
+class Or:
+    def __init__(self, *matchers):
+        self._matchers = matchers
 
     def test(self, player):
-        return True
-    
+        for matcher in self._matchers:
+            if matcher.test(player):
+                return True
+            
+        return False
+
 class Not:
     def __init__(self, matcher):
         self._matcher = matcher
 
     def test(self, player):
         return not self._matcher.test(player)
+    
+class All:
+    def __init__(self):
+        pass
+
+    def test(self, player):
+        return True
 
 class PlaysIn:
     def __init__(self, team):
